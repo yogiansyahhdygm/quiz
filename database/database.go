@@ -12,14 +12,14 @@ import (
 var DB *sql.DB
 
 func Connect() {
-	dbURL := os.Getenv("DATABASE_URL")
+	dbURL := os.Getenv("DATABASE_URL") + "?sslmode=require"
+
 	if dbURL == "" {
 		log.Fatal("DATABASE_URL not found")
 	}
-	connStr := fmt.Sprintf("%s?sslmode=disable", dbURL)
 
 	var err error
-	DB, err = sql.Open("postgres", connStr)
+	DB, err = sql.Open("postgres", dbURL)
 	if err != nil {
 		log.Fatalf("Error connecting to database: %v", err)
 	}
