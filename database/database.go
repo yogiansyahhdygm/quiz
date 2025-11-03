@@ -12,14 +12,18 @@ import (
 var DB *sql.DB
 
 func Connect() {
-	dsn := os.Getenv("DATABASE_URL") // contoh: postgres://user:pass@host:port/dbname
-	// dsn := "postgres://postgres:admin@localhost:5432/perpustakaan?sslmode=disable"
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		log.Fatal("DATABASE_URL not found")
+	}
+
+	// Tambahkan sslmode=disable agar Railway tidak pakai SSL
+	connStr := fmt.Sprintf("%s?sslmode=disable", dbURL)
 
 	var err error
-
-	DB, err = sql.Open("postgres", dsn)
+	DB, err = sql.Open("postgres", connStr)
 	if err != nil {
-		log.Fatal("Gagal konek database:", err)
+		log.Fatalf("Error connecting to database: %v", err)
 	}
 
 	if err = DB.Ping(); err != nil {
