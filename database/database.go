@@ -16,8 +16,6 @@ func Connect() {
 	if dbURL == "" {
 		log.Fatal("DATABASE_URL not found")
 	}
-
-	// Tambahkan sslmode=disable agar Railway tidak pakai SSL
 	connStr := fmt.Sprintf("%s?sslmode=disable", dbURL)
 
 	var err error
