@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
 	_ "github.com/lib/pq"
 )
@@ -11,8 +12,8 @@ import (
 var DB *sql.DB
 
 func Connect() {
-	// dsn := os.Getenv("DATABASE_URL") // contoh: postgres://user:pass@host:port/dbname
-	dsn := "postgres://postgres:admin@localhost:5432/perpustakaan?sslmode=disable"
+	dsn := os.Getenv("DATABASE_URL") // contoh: postgres://user:pass@host:port/dbname
+	// dsn := "postgres://postgres:admin@localhost:5432/perpustakaan?sslmode=disable"
 
 	var err error
 
