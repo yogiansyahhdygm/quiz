@@ -7,6 +7,7 @@ Middleware Basic Auth untuk mengamankan endpoint.
 Untuk Basic Auth yang dipakai :
 - Username : admin
 - Password : admin
+
 *note : semua endpoint wajib sudah authorization
 
 Endpoint API :
